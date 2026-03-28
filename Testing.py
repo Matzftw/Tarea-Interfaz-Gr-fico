@@ -78,6 +78,7 @@ def abre_animacion():
     canva_e.place(x= 50, y= 50)
     #canva_e.pack()
     bola = canva_e.create_oval(50, 50, 100, 100, fill='red')
+    bola2 = canva_e.create_oval(350, 350, 400, 400, fill='blue')
     
     
     #img4 = imagen4 = Image.open("galaxian-galaga-nintendo.jpg")     #Abre la imagen que se usará para fondo de la animación
