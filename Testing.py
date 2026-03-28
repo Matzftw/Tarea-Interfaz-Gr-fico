@@ -80,7 +80,12 @@ def abre_animacion():
     bola = canva_e.create_oval(50, 50, 100, 100, fill='red')
     bola2 = canva_e.create_oval(350, 350, 400, 400, fill='blue')
     
+    def mover():
+        canva_e.move(bola, 5,5)
+        canva_e.move(bola2, -5,-5)
+        canva_e.after(50, mover)
     
+    mover()
     #img4 = imagen4 = Image.open("galaxian-galaga-nintendo.jpg")     #Abre la imagen que se usará para fondo de la animación
     #imagen3 = Image.open("Fondo_int_anima.jpg")     #Abre la imagen que se usará para fondo aqui
     #imagen4 = imagen4.resize((500, 500))                     #tamaño de la imagen
