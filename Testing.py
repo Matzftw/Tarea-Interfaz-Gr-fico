@@ -4,7 +4,7 @@
 import tkinter as tk
 import math as mt   #import super util (no hizo nada)
 import pygame #Solo para audio
-from PIL import Image #Solo para imagenes
+from PIL import Image, ImageTk #Solo para imagenes
 
 
 def pares(num):
@@ -30,6 +30,13 @@ def abre_funcion():
     Ventana2.configure(
         background= 'gray',
     )
+
+    imagen2 = Image.open("Fondo int_num.jpg")     #Abre la imagen que se usará para fondo aqui
+    imagen2 = imagen2.resize((600, 600))          #tamaño de la imagen
+    img2 = ImageTk.PhotoImage(imagen2)
+    label_img2 = tk.Label(Ventana2, image=img2)
+    label_img2.pack()
+
     canvas_num = tk.Canvas(Ventana2, bg = 'black', width=500, height=500)
     canvas_num.place(x= 50, y= 50)
 
@@ -58,7 +65,13 @@ def abre_animacion():
     Ventana3.geometry("600x600")
     Ventana3.configure(
         background= 'gray',
-    )
+    ) 
+    imagen3 = Image.open("galaxian-galaga-nintendo.jpg")     #Abre la imagen que se usará para fondo aqui
+    imagen3 = imagen3.resize((600, 600))          #tamaño de la imagen
+    img3 = ImageTk.PhotoImage(imagen3)
+    label_img3 = tk.Label(Ventana3, image=img3)
+    label_img3.pack()
+
     Ventana3.grab_set()
     Ventana3.resizable(width= False, height= False)
     canva_e = tk.Canvas(Ventana3, bg = 'black', width=500, height=500)
@@ -67,6 +80,14 @@ def abre_animacion():
     bola = canva_e.create_oval(50, 50, 100, 100, fill='red')
     
     
+    #img4 = imagen4 = Image.open("galaxian-galaga-nintendo.jpg")     #Abre la imagen que se usará para fondo de la animación
+    #imagen3 = Image.open("Fondo_int_anima.jpg")     #Abre la imagen que se usará para fondo aqui
+    #imagen4 = imagen4.resize((500, 500))                     #tamaño de la imagen
+    #img4 = ImageTk.PhotoImage(imagen4)
+    #label_img4 = tk.Label(canva_e, image=img4)
+    #label_img4.pack()
+    
+
     vx = 5
     vy = 5
     def mover_bola():
@@ -79,7 +100,7 @@ def abre_animacion():
         canva_e.move(bola, vx, vy)
 
     origen = tk.Button(Ventana3, text = 'Volver a la Ventana Principal', bg = 'Red', fg = 'White', command = lambda:Ventana3.destroy())
-    origen.place(x = 300, y= 500)
+    origen.place(x = 300, y= 550)
     Ventana3.mainloop()
 
 
@@ -89,13 +110,19 @@ def abre_animacion():
 ventana = tk.Tk()
 
 ventana.title("Perfil")
-ventana.geometry("500x500")
+ventana.geometry("600x600")
 ventana.configure(
-    background= 'black',
+    background= 'gray',
 )
+imagen = Image.open("1534718_1028.jpg")     #Abre la imagen que se usará para fondo
+imagen = imagen.resize((600, 600))          #tamaño de la imagen
+img = ImageTk.PhotoImage(imagen)
+label_img = tk.Label(ventana, image=img)
+label_img.pack()
 
-def cerrarVentana():
-    print("cerrar esta ventana")
+
+def cerrarVentana():                #Función que cierra la ventana principal
+    print("cerrar esta ventana") 
     ventana.destroy()
 
 ventana.resizable(width= False, height= False)
@@ -108,7 +135,7 @@ tk.Label(canva1, text = 'Max Andrés Quirós Hernández',background= 'gray' ,for
 tk.Label(canva1, text = 'Edad: 18 años', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 40)
 tk.Label(canva1, text = 'Carnet: 2026125772', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 65)
 tk.Label(canva1, text = 'Biografía: Soy Max, nací en Moravia pero desde hace unos años vivo aquí, me gusta hacer atletismo y jugar Valorant aunque soy malísimo', width=300,justify='left',background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 90)
-tk.Label(canva1, image = '', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 115)
+#tk.Label(canva1, image = '', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 115)
 
 
 
