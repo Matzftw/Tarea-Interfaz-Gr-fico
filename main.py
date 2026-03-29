@@ -130,9 +130,7 @@ def abre_animacion():
         if abs(y1-y2) <10 or abs(y1-y2) <10:
             dy1 *= -1
             dy2 *= -1
-        
-    
-mover()
+    mover()
     
     Ventana3.grab_set()
     x1 = 50
@@ -148,7 +146,6 @@ mover()
     y4 = 400
     dx2 = -4
     dy2 = -4
-
     def mover_bola():
         global vx, vy
         x1, y1, x2, y2 = canva_e.coords(bola)
@@ -160,9 +157,8 @@ mover()
 
     origen = tk.Button(Ventana3, text = 'Volver a la Ventana Principal', bg = 'Red', fg = 'White', command = lambda:Ventana3.destroy())
     origen.place(x = 300, y= 550)
+
     Ventana3.mainloop()
-
-
 
 
 
