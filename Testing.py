@@ -72,20 +72,100 @@ def abre_animacion():
     label_img3 = tk.Label(Ventana3, image=img3)
     label_img3.pack()
 
-    Ventana3.grab_set()
+    
     Ventana3.resizable(width= False, height= False)
     canva_e = tk.Canvas(Ventana3, bg = 'black', width=500, height=500)
     canva_e.place(x= 50, y= 50)
     #canva_e.pack()
-    bola = canva_e.create_oval(50, 50, 100, 100, fill='red')
-    bola2 = canva_e.create_oval(350, 350, 400, 400, fill='blue')
+    #bola1
+    x1 = 50
+    y1 = 50
+    x2 = 100
+    y2 = 100
+    dx1 = 4
+    dy1 = 4
+    #bola2
+    x3 = 350
+    y3 =  350
+    x4 = 400
+    y4 = 400
+    dx2 = -4
+    dy2 = -4
+
+    bola = canva_e.create_oval(x1, y1, x2, y2, fill='red')
+    bola2 = canva_e.create_oval(x3, y3, x4, y4, fill='blue')
     
+    
+
     def mover():
-        canva_e.move(bola, 5,5)
-        canva_e.move(bola2, -5,-5)
+        canva_e.move(bola, dx1, dy1)
+        canva_e.move(bola2, dx2, dy2)
         canva_e.after(50, mover)
+        colision()
+
+    def colision():
+        hit1 = canva_e.coords(bola)
+        hit2 = canva_e.coords(bola2)
+    
+
+        if (hit1[0] < hit2[2] and hit1[2] > hit2[0] and hit1[1] < hit2[3] and hit1[3] > hit2[1]): 
+            print ("Colision detectada")
+            canva_e.move(bola, dx1,dy1)
+            canva_e.move(bola2, dx2,dy2)
+            
+            
+        if (hit1[0] <= 0 or hit1[2] >= 500):
+            canva_e.move(bola, dx1,0)
+            canva_e.move(bola2, dx2,0)
+            
+        if (hit1[1] <= 0 or hit1[3] >= 500):
+            canva_e.move(bola, 0,-dy1)
+            canva_e.move(bola2, 0,-dy2)
+            
+        if (hit2[0] <= 0 or hit2[2] >= 500):
+            canva_e.move(bola2, -dx2,0)
+            canva_e.move(bola, -dx1,0)
+            
+        if (hit2[1] <= 0 or hit2[3] >= 500):
+            canva_e.move(bola2, 0,-dy2)
+            canva_e.move(bola, 0,-dy1)
+            
+        
+    if colision():
+        if abs(x1-x2)<10 or abs(x1-(x2))<10:
+            dx1 *= -1
+            dx2 *= -1
+        if abs(y1-y2) <10 or abs(y1-y2) <10:
+            dy1 *= -1
+            dy2 *= -1
+
+
+    #    dx1, dx2 = dx2, dx1
+    #    dy1, dy2 = dy2, dy1
+        #dx3, dx4 = dx4, dx3
+        #dy3, dy4 = dy4, dy3
+        
+    #    x1 += dx1
+    #   y1 += dy1
+    #    x2 += dx1
+    #    y2 += dy1
+        
+    
+
+
     
     mover()
+    
+    
+
+
+    #def colision():
+        
+    #colision()
+    
+    Ventana3.grab_set()
+
+    
     #img4 = imagen4 = Image.open("galaxian-galaga-nintendo.jpg")     #Abre la imagen que se usará para fondo de la animación
     #imagen3 = Image.open("Fondo_int_anima.jpg")     #Abre la imagen que se usará para fondo aqui
     #imagen4 = imagen4.resize((500, 500))                     #tamaño de la imagen
@@ -133,15 +213,16 @@ def cerrarVentana():                #Función que cierra la ventana principal
 
 ventana.resizable(width= False, height= False)
 
-canva1 = tk.Canvas(ventana, bg = 'gray', width=300, height=300)
+canva1 = tk.Canvas(ventana, bg = 'black', width=300, height=340)
 canva1.place(x= 125, y= 50)
-#canva1.pack(side= 'top')
 
-tk.Label(canva1, text = 'Max Andrés Quirós Hernández',background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 15)
-tk.Label(canva1, text = 'Edad: 18 años', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 40)
-tk.Label(canva1, text = 'Carnet: 2026125772', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 65)
-tk.Label(canva1, text = 'Biografía: Soy Max, nací en Moravia pero desde hace unos años vivo aquí, me gusta hacer atletismo y jugar Valorant aunque soy malísimo', width=300,justify='left',background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 90)
-#tk.Label(canva1, image = '', background= 'gray' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 115)
+
+tk.Label(canva1, text = 'Max Andrés Quirós Hernández',background= 'black' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 15)
+tk.Label(canva1, text = 'Edad: 18 años', background= 'black' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 40)   
+tk.Label(canva1, text = 'Carnet: 2026125772', background= 'black' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 65)  #carnet estudiantil
+
+biografia = "Soy Max, nací en Moravia pero desde hace unos años vivo aquí, me gusta hacer atletismo y jugar Valorant aunque soy malísimo"   #Se crea la variable que tenga la biografía
+canva1.create_text(25, 90, text=biografia, fill='white', font=('Times New Roman', 12), anchor='nw', width=250)  #parametros de la bio
 
 
 
