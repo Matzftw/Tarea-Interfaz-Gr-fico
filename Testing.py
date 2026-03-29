@@ -6,11 +6,11 @@ import pygame #Solo para audio
 from PIL import Image, ImageTk #Solo para imagenes
 
 
-def pares(num):
+def pares(num, salida1=None):
     if num == 0:
         return (0,0)
     elif isinstance(num,int) and num > 0 and num < 9999:
-        return pares_aux(abs(num))
+        return pares_aux(abs(num), salida1=salida1)
     else:
         return -1
 
@@ -42,8 +42,8 @@ def abre_funcion():
     def calcule():
         salida1.delete("1.0", tk.END)
         
-        n = int(entrada.get())
-        if n > 1:
+        n = int(entrada.get())      #Sin este int el sistema tira error porque lo lee como un str 
+        if n > 1:                   #aquí 
             pares(n, salida1 = salida1)
 
     canvas_num = tk.Canvas(Ventana2, bg = 'black', width=500, height=500)
@@ -58,7 +58,7 @@ def abre_funcion():
     Calcular = tk.Button(canvas_num, text = 'Calcular', bg = 'Green', fg = 'White', command = lambda:calcule())
     Calcular.place(x = 200, y= 300)
 
-    salida1 = tk.Text(canvas_num, height=1, width=15, background= 'white' ,foreground= 'white', font = ('Times New Roman', 12))
+    salida1 = tk.Text(canvas_num)
     salida1.place(x= 200, y= 420)
 
 
