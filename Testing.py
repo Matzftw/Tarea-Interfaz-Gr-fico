@@ -19,7 +19,7 @@ def pares_aux(num, a=2, Z=(), salida1=None):      #Funcion recursiva (con ayuda 
         return Z
     if num % a == 0:
         result = (Z+ (a, num//a))
-        salida1.insert(tk.END,str(result)+"\n")
+        salida1.insert(tk.END,str(result)+"\n")     
         pares_aux(num // a, a, Z + (a,), salida1)
     
     pares_aux(num, a + 1, Z, salida1)
@@ -35,7 +35,7 @@ def abre_funcion():
 
     imagen2 = Image.open("Fondo int_num.jpg")     #Abre la imagen que se usará para fondo aqui
     imagen2 = imagen2.resize((600, 600))          #tamaño de la imagen
-    img2 = ImageTk.PhotoImage(imagen2)
+    img2 = ImageTk.PhotoImage(imagen2)             
     label_img2 = tk.Label(Ventana2, image=img2)
     label_img2.pack()
     
@@ -208,12 +208,12 @@ def abre_animacion():
 ventana = tk.Tk()
 
 ventana.title("Perfil")
-ventana.geometry("600x600")
+ventana.geometry("700x700")
 ventana.configure(
     background= 'gray',
 )
 imagen = Image.open("1534718_1028.jpg")     #Abre la imagen que se usará para fondo
-imagen = imagen.resize((600, 600))          #tamaño de la imagen
+imagen = imagen.resize((700, 700))          #tamaño de la imagen
 img = ImageTk.PhotoImage(imagen)
 label_img = tk.Label(ventana, image=img)
 label_img.pack()
@@ -225,7 +225,7 @@ def cerrarVentana():                #Función que cierra la ventana principal
 
 ventana.resizable(width= False, height= False)
 
-canva1 = tk.Canvas(ventana, bg = 'black', width=300, height=340)
+canva1 = tk.Canvas(ventana, bg = 'black', width=300, height=600)
 canva1.place(x= 125, y= 50)
 
 
@@ -234,22 +234,30 @@ tk.Label(canva1, text = 'Edad: 18 años', background= 'black' ,foreground= 'whit
 tk.Label(canva1, text = 'Carnet: 2026125772', background= 'black' ,foreground= 'white', font = ('Times New Roman', 12)).place(x= 25, y= 65)  #carnet estudiantil
 
 biografia = "Soy Max, nací en Moravia pero desde hace unos años vivo aquí, me gusta hacer atletismo y jugar Valorant aunque soy malísimo"   #Se crea la variable que tenga la biografía
-canva1.create_text(25, 90, text=biografia, fill='white', font=('Times New Roman', 12), anchor='nw', width=250)  #parametros de la bio
+canva1.create_text(25, 90, text=biografia, fill='white', font=('Times New Roman', 12), anchor='nw', width=250)  #parametros de la bio 
+#foto = Image.open("Foto.png") 
+#canva1.image = ImageTk.PhotoImage(foto)
+#canva1.create_image(25, 50, image=canva1.image, anchor='nw')
 
+    #Abre la imagen que se usará para el perfil
 
-
+grupo = "Aerosmith"
+canva1.create_text(25, 500, text=grupo, fill='white', font=('Times New Roman', 12), anchor='nw', width=250)  #parametros del grupo musical favorito
+aero = Image.open("Grupo.png")
+canva1.aero = ImageTk.PhotoImage(aero)
+canva1.create_image(25, 650, image=canva1.aero, anchor='sw')
 
 botonM = tk.Button(ventana, text = 'Cerrar la Ventana', bg = 'Red', command = lambda:cerrarVentana())
-botonM.place(x = 300, y= 400)
+botonM.place(x = 300, y= 650)
 
 #boton1 = tk.Button(canva1, text = 'Perfil', bg = 'purple', command = lambda:Nombre())
 #boton1.place(x= 50, y= 100)
 
 boton2 = tk.Button(ventana, text = 'Funcion Pares', bg = 'lime', command = lambda:abre_funcion())
-boton2.place(x= 50, y= 400)
+boton2.place(x= 50, y= 650)
 
 boton3 = tk.Button(ventana, text = 'Animacion Esferas', bg = 'cyan', command = lambda:abre_animacion())
-boton3.place(x= 165, y= 400)
+boton3.place(x= 165, y= 650)
 
 
 ventana.mainloop()
