@@ -1,4 +1,3 @@
-
 """Tarea 1 Progra Max Q.H"""
 
 import tkinter as tk
@@ -15,13 +14,16 @@ def pares(num):
     else:
         return -1
 
-def pares_aux(num):
-    if num == 0:
-        b = num // a
-        if a <= b:
-            return ({a}, {b})
-    else:
-        return -1
+def pares_aux(num, a=2, Z=(), salida1=None):      #Funcion recursiva (con ayuda de chatgpt) Se excluye el resultado obvio del numero *1 
+    if a * a> num:           #a es el divisor que va probando, Z es el resultado que va almacenando cada que se repite el ciclo
+        return Z
+    if num % a == 0:
+        result = (Z+ (a, num//a))
+        salida1.insert(tk.END,str(result)+"\n")
+        pares_aux(num // a, a, Z + (a,), salida1)
+    
+    pares_aux(num, a + 1, Z, salida1)
+#print(pares())
 
 def abre_funcion():
     Ventana2 = tk.Toplevel(ventana)
@@ -36,17 +38,27 @@ def abre_funcion():
     img2 = ImageTk.PhotoImage(imagen2)
     label_img2 = tk.Label(Ventana2, image=img2)
     label_img2.pack()
+    
+    def calcule():
+        salida1.delete("1.0", tk.END)
+        
+        n = int(entrada.get())
+        if n > 1:
+            pares(n, salida1 = salida1)
 
     canvas_num = tk.Canvas(Ventana2, bg = 'black', width=500, height=500)
     canvas_num.place(x= 50, y= 50)
 
-    numero = tk.Entry(canvas_num, width= 20)
-    numero.place(x= 200, y= 240)
+    #numero = tk.Entry(canvas_num, width= 20)
+    #numero.place(x= 200, y= 240)
 
-    entrada = numero.get()
+    entrada = tk.Entry(canvas_num, width= 20)
+    entrada.place(x= 200, y= 240)
 
+    Calcular = tk.Button(canvas_num, text = 'Calcular', bg = 'Green', fg = 'White', command = lambda:calcule())
+    Calcular.place(x = 200, y= 300)
 
-    salida1 = tk.Label(canvas_num, text = 'pares_aux.get()', background= 'white' ,foreground= 'white', font = ('Times New Roman', 12))
+    salida1 = tk.Text(canvas_num, height=1, width=15, background= 'white' ,foreground= 'white', font = ('Times New Roman', 12))
     salida1.place(x= 200, y= 420)
 
 
